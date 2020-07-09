@@ -1,0 +1,37 @@
+server:
+  servlet:
+    context-path: /kafka
+  port: 8081
+
+## SpringBoot 整合 Kafka
+spring:
+  application:
+    name: kafka-log-collect
+  http:
+    encoding:
+      charset: utf-8
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 0 # kafka producer发送消息失败时的重试次数
+      batch-size: 16384 # 批量发送数据的配置
+      # kafka消息的序列化配置
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: 1 # kafka生产端最重要的选项，可靠性投递的配置项
+              # acks=0：生产者在成功写入消息之前，不会等待任何来自服务器的相应
+              # acks=1：只要集群的首领节点收到消息，生产者就会收到一个来自服务器的成功响应
+              # acks=-1/ALL：分区leader必须等待消息被成功写入到所有的ISR副本（同步副本）中,才认为producer请求成功。这种方案提供最高的消息持久性保证，但是理论上吞吐率也是最差的
+    consumer:
+      enable-auto-commit: false # consumer消息的签收机制：手工签收
+      auto-offset-reset: earliest # 在偏移量无效的情况下，消费者将从起始位置读取分区的记录
+      # kafka消息的序列化配置
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: manual # 手工签收
+      concurrency: 5 # 并行度
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null

@@ -1,0 +1,42 @@
+<!--
+    @Author : TYK tuyk涂元坤
+    @Mail : 766564616@qq.com
+    @Create : 2019/8/19 17:44 星期一
+    @Update : 2019/8/19 17:44 by tuyk涂元坤
+-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<!-- Page content -->
+<div class="container blog-content-container">
+    <h3 th:text="${userModel.title}">thymeleaf</h3>
+    <div>
+        <a class="btn btn-info" href="/users/form.html" th:href="@{/users/form}">创建用户</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>EMAIL</td>
+            <td>NAME</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${userModel.userList.size()} eq 0">
+            <td colspan="3">没有用户信息！</td>
+        </tr>
+        <tr th:each="user : ${userModel.userList}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.email}"></td>
+            <td><a th:href="@{'/users/'+${user.id}}" th:text="${user.name}"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div><!-- /.container -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+2019-02-22 21:56:27,765 - Starting Application on TYK with PID 12692 (E:\java\imooc_coding\117-wx-sell\target\classes started by TYK in E:\java\imooc_coding\117-wx-sell)
+2019-02-22 21:56:27,769 - The following profiles are active: dev
+2019-02-22 21:56:29,143 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-02-22 21:56:29,144 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-02-22 21:56:29,332 - Finished Spring Data repository scanning in 178ms. Found 5 repository interfaces.
+2019-02-22 21:56:29,353 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-02-22 21:56:29,356 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-02-22 21:56:29,405 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.OrderDetailRepository.
+2019-02-22 21:56:29,416 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.OrderMasterRepository.
+2019-02-22 21:56:29,418 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.ProductCategoryRepository.
+2019-02-22 21:56:29,419 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.ProductInfoRepository.
+2019-02-22 21:56:29,419 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.SellerRepository.
+2019-02-22 21:56:29,419 - Finished Spring Data repository scanning in 39ms. Found 0 repository interfaces.
+2019-02-22 21:56:30,056 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4df9dd3d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-22 21:56:30,535 - Tomcat initialized with port(s): 8080 (http)
+2019-02-22 21:56:30,550 - Initializing ProtocolHandler ["http-nio-8080"]
+2019-02-22 21:56:30,561 - Starting service [Tomcat]
+2019-02-22 21:56:30,562 - Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-22 21:56:30,569 - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_152\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_152\bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin;D:\Program Files (x86)\apache-maven-3.5.2\bin;D:\Program Files (x86)\gradle-4.4.1\bin;D:\Program Files (x86)\Git\cmd;D:\Program Files\baidu\BaiduPCS-Go;D:\Program Files (x86)\Redis-x64-3.2.100;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;%ANDROID_HOME%\build-tools\28.0.3;C:\WINDOWS\System32\OpenSSH\;C:\Users\TYK\Desktop;D:\Program Files (x86)\natapp;D:\Program Files (x86)\Apache ab 24\bin;D:\Program Files (x86)\wiremock;C:\Users\TYK\AppData\Local\Microsoft\WindowsApps;C:\Users\TYK\AppData\Local\GitHubDesktop\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;.]
+2019-02-22 21:56:30,936 - Initializing Spring embedded WebApplicationContext
+2019-02-22 21:56:30,937 - Root WebApplicationContext: initialization completed in 3096 ms
+2019-02-22 21:56:31,324 - HikariPool-1 - Starting...
+2019-02-22 21:56:31,457 - HikariPool-1 - Start completed.
+2019-02-22 21:56:31,532 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-02-22 21:56:31,665 - HHH000412: Hibernate Core {5.3.7.Final}
+2019-02-22 21:56:31,668 - HHH000206: hibernate.properties not found
+2019-02-22 21:56:31,856 - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-02-22 21:56:32,096 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-02-22 21:56:32,976 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-02-22 21:56:35,370 - Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-22 21:56:36,521 - Starting ProtocolHandler ["http-nio-8080"]
+2019-02-22 21:56:36,545 - Using a shared selector for servlet write/read
+2019-02-22 21:56:36,595 - Tomcat started on port(s): 8080 (http) with context path '/sell'
+2019-02-22 21:56:36,603 - Started Application in 9.89 seconds (JVM running for 15.269)
+2019-02-22 21:57:31,356 - Starting Application on TYK with PID 7560 (E:\java\imooc_coding\117-wx-sell\target\classes started by TYK in E:\java\imooc_coding\117-wx-sell)
+2019-02-22 21:57:31,361 - The following profiles are active: dev
+2019-02-22 21:57:32,498 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-02-22 21:57:32,498 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-02-22 21:57:32,618 - Finished Spring Data repository scanning in 112ms. Found 5 repository interfaces.
+2019-02-22 21:57:32,642 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-02-22 21:57:32,644 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-02-22 21:57:32,677 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.OrderDetailRepository.
+2019-02-22 21:57:32,678 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.OrderMasterRepository.
+2019-02-22 21:57:32,680 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.ProductCategoryRepository.
+2019-02-22 21:57:32,681 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.ProductInfoRepository.
+2019-02-22 21:57:32,681 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.SellerRepository.
+2019-02-22 21:57:32,682 - Finished Spring Data repository scanning in 27ms. Found 0 repository interfaces.
+2019-02-22 21:57:33,132 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$52dad752] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-22 21:57:33,557 - Tomcat initialized with port(s): 80 (http)
+2019-02-22 21:57:33,573 - Initializing ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:33,592 - Starting service [Tomcat]
+2019-02-22 21:57:33,592 - Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-22 21:57:33,602 - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_152\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_152\bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin;D:\Program Files (x86)\apache-maven-3.5.2\bin;D:\Program Files (x86)\gradle-4.4.1\bin;D:\Program Files (x86)\Git\cmd;D:\Program Files\baidu\BaiduPCS-Go;D:\Program Files (x86)\Redis-x64-3.2.100;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;%ANDROID_HOME%\build-tools\28.0.3;C:\WINDOWS\System32\OpenSSH\;C:\Users\TYK\Desktop;D:\Program Files (x86)\natapp;D:\Program Files (x86)\Apache ab 24\bin;D:\Program Files (x86)\wiremock;C:\Users\TYK\AppData\Local\Microsoft\WindowsApps;C:\Users\TYK\AppData\Local\GitHubDesktop\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;.]
+2019-02-22 21:57:33,997 - Initializing Spring embedded WebApplicationContext
+2019-02-22 21:57:33,998 - Root WebApplicationContext: initialization completed in 2441 ms
+2019-02-22 21:57:34,496 - HikariPool-1 - Starting...
+2019-02-22 21:57:34,659 - HikariPool-1 - Start completed.
+2019-02-22 21:57:34,756 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-02-22 21:57:34,882 - HHH000412: Hibernate Core {5.3.7.Final}
+2019-02-22 21:57:34,883 - HHH000206: hibernate.properties not found
+2019-02-22 21:57:35,015 - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-02-22 21:57:35,434 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-02-22 21:57:36,202 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-02-22 21:57:38,346 - Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-22 21:57:38,791 - Starting ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:38,802 - Using a shared selector for servlet write/read
+2019-02-22 21:57:38,811 - Pausing ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:38,811 - Stopping service [Tomcat]
+2019-02-22 21:57:38,817 - The stop() method was called on component [StandardServer[-1]] after stop() had already been called. The second call will be ignored.
+2019-02-22 21:57:38,818 - Stopping ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:38,818 - Destroying ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:38,821 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-02-22 21:57:38,829 - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-22 21:57:38,830 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-02-22 21:57:38,832 - HikariPool-1 - Shutdown initiated...
+2019-02-22 21:57:38,841 - HikariPool-1 - Shutdown completed.
+2019-02-22 21:57:52,883 - Starting Application on TYK with PID 14152 (E:\java\imooc_coding\117-wx-sell\target\classes started by TYK in E:\java\imooc_coding\117-wx-sell)
+2019-02-22 21:57:52,889 - The following profiles are active: dev
+2019-02-22 21:57:53,962 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-02-22 21:57:53,962 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-02-22 21:57:54,067 - Finished Spring Data repository scanning in 97ms. Found 5 repository interfaces.
+2019-02-22 21:57:54,080 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-02-22 21:57:54,081 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-02-22 21:57:54,104 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.OrderDetailRepository.
+2019-02-22 21:57:54,105 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.OrderMasterRepository.
+2019-02-22 21:57:54,106 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.ProductCategoryRepository.
+2019-02-22 21:57:54,106 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.ProductInfoRepository.
+2019-02-22 21:57:54,106 - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuyrk.sell.repository.SellerRepository.
+2019-02-22 21:57:54,107 - Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+2019-02-22 21:57:54,542 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$857e6b96] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-22 21:57:54,956 - Tomcat initialized with port(s): 80 (http)
+2019-02-22 21:57:54,970 - Initializing ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:54,980 - Starting service [Tomcat]
+2019-02-22 21:57:54,980 - Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-22 21:57:54,988 - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_152\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_152\bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin;D:\Program Files (x86)\apache-maven-3.5.2\bin;D:\Program Files (x86)\gradle-4.4.1\bin;D:\Program Files (x86)\Git\cmd;D:\Program Files\baidu\BaiduPCS-Go;D:\Program Files (x86)\Redis-x64-3.2.100;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;%ANDROID_HOME%\build-tools\28.0.3;C:\WINDOWS\System32\OpenSSH\;C:\Users\TYK\Desktop;D:\Program Files (x86)\natapp;D:\Program Files (x86)\Apache ab 24\bin;D:\Program Files (x86)\wiremock;C:\Users\TYK\AppData\Local\Microsoft\WindowsApps;C:\Users\TYK\AppData\Local\GitHubDesktop\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;.]
+2019-02-22 21:57:55,493 - Initializing Spring embedded WebApplicationContext
+2019-02-22 21:57:55,494 - Root WebApplicationContext: initialization completed in 2496 ms
+2019-02-22 21:57:55,864 - HikariPool-1 - Starting...
+2019-02-22 21:57:55,973 - HikariPool-1 - Start completed.
+2019-02-22 21:57:56,036 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-02-22 21:57:56,139 - HHH000412: Hibernate Core {5.3.7.Final}
+2019-02-22 21:57:56,142 - HHH000206: hibernate.properties not found
+2019-02-22 21:57:56,279 - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-02-22 21:57:56,461 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-02-22 21:57:57,179 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-02-22 21:57:59,460 - Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-22 21:57:59,925 - Starting ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:59,938 - Using a shared selector for servlet write/read
+2019-02-22 21:57:59,946 - Pausing ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:59,946 - Stopping service [Tomcat]
+2019-02-22 21:57:59,953 - The stop() method was called on component [StandardServer[-1]] after stop() had already been called. The second call will be ignored.
+2019-02-22 21:57:59,954 - Stopping ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:59,954 - Destroying ProtocolHandler ["http-nio-80"]
+2019-02-22 21:57:59,957 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-02-22 21:57:59,967 - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-22 21:57:59,970 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-02-22 21:57:59,973 - HikariPool-1 - Shutdown initiated...
+2019-02-22 21:57:59,985 - HikariPool-1 - Shutdown completed.

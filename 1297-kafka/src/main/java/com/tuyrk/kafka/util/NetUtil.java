@@ -1,0 +1,152 @@
+package com.tuyrk.kafka.util;
+
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.net.*;
+import java.nio.channels.SocketChannel;
+import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * @author tuyrk
+ */
+public class NetUtil {
+    private static Pattern ipPattern = Pattern.compile("[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]");
+
+    /**
+     * @param address
+     * @return serverAddr
+     */
+    public static String normalizeAddress(String address) {
+        String[] blocks = address.split("[:]");
+        if (blocks.length > 2) {
+            throw new IllegalArgumentException(address + " is invalid");
+        }
+        String host = blocks[0];
+        int port = 80;
+        if (blocks.length > 1) {
+            port = Integer.parseInt(blocks[1]);
+        } else {
+            return address + (":" + port);// use default 80
+        }
+        return String.format("%s:%d", host, port);
+    }
+
+    public static String getLocalAddress(String address) {
+        String[] blocks = address.split("[:]");
+        if (blocks.length != 2) {
+            throw new IllegalArgumentException(address + " is invalid");
+        }
+        String host = blocks[0];
+        int port = Integer.parseInt(blocks[1]);
+
+        if ("0.0.0.0".equals(host)) {
+            return String.format("%s:%d", NetUtil.getLocalIp(), port);
+        }
+        return address;
+    }
+
+    private static int matchedIndex(String ip, String[] prefix) {
+        for (int i = 0; i < prefix.length; i++) {
+            String p = prefix[i];
+            if ("*".equals(p)) {
+                if (ip.startsWith("127.")
+                        || ip.startsWith("10.")
+                        || ip.startsWith("172.")
+                        || ip.startsWith("192.")) {
+                    continue;
+                }
+                return i;
+            } else {
+                if (ip.startsWith(p)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static String getLocalIp(String ipPreference) {
+        if (ipPreference == null) {
+            ipPreference = "*>10>172>192>127";
+        }
+        String[] prefix = ipPreference.split("[> ]+");
+        Enumeration<NetworkInterface> interfaces = null;
+        try {
+            interfaces = NetworkInterface.getNetworkInterfaces();
+        } catch (SocketException e) {
+            return "127.0.0.1";
+        }
+        String matchedIp = null;
+        int matchedIdx = -1;
+        while (interfaces.hasMoreElements()) {
+            NetworkInterface ni = interfaces.nextElement();
+            Enumeration<InetAddress> en = ni.getInetAddresses();
+            while (en.hasMoreElements()) {
+                InetAddress addr = en.nextElement();
+                String ip = addr.getHostAddress();
+                Matcher matcher = ipPattern.matcher(ip);
+                if (matcher.matches()) {
+                    int idx = matchedIndex(ip, prefix);
+                    if (idx == -1) {
+                        continue;
+                    }
+                    if (matchedIdx == -1) {
+                        matchedIdx = idx;
+                        matchedIp = ip;
+                    } else {
+                        if (matchedIdx > idx) {
+                            matchedIdx = idx;
+                            matchedIp = ip;
+                        }
+                    }
+                }
+            }
+        }
+        if (matchedIp != null) {
+            return matchedIp;
+        }
+        return "127.0.0.1";
+    }
+
+    public static String getLocalIp() {
+        return getLocalIp("*>10>172>192>127");
+    }
+
+    public static String remoteAddress(SocketChannel channel) {
+        SocketAddress addr = channel.socket().getRemoteSocketAddress();
+        return String.format("%s", addr);
+    }
+
+    public static String localAddress(SocketChannel channel) {
+        SocketAddress addr = channel.socket().getLocalSocketAddress();
+        String res = String.format("%s", addr);
+        return addr == null ? res : res.substring(1);
+    }
+
+    public static String getPid() {
+        RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
+        String name = runtime.getName();
+        int index = name.indexOf("@");
+        if (index != -1) {
+            return name.substring(0, index);
+        }
+        return null;
+    }
+
+    public static String getLocalHostName() {
+        try {
+            return (InetAddress.getLocalHost()).getHostName();
+        } catch (UnknownHostException e) {
+            String host = e.getMessage();
+            if (host != null) {
+                int colon = host.indexOf(":");
+                if (colon > 0) {
+                    return host.substring(0, colon);
+                }
+            }
+            return "UnknownHost";
+        }
+    }
+}

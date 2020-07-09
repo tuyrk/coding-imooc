@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuyrk.sell.dataobject.mapper.ProductCategoryMapper">
+    <resultMap id="baseResultMap" type="com.tuyrk.sell.dataobject.ProductCategory">
+        <id column="category_id" property="categoryId" jdbcType="INTEGER"/>
+        <id column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <id column="category_type" property="categoryType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectByCategoryType" resultMap="baseResultMap" parameterType="java.lang.Integer">
+        SELECT
+            category_id,
+            category_name,
+            category_type
+        FROM product_category
+        WHERE category_type = #{categoryType, jdbcType=INTEGER};
+    </select>
+</mapper>

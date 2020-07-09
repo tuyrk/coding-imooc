@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.tuyrk.HomepageCourseApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.274 s <<< FAILURE! - in com.tuyrk.HomepageCourseApplicationTests
+com.tuyrk.HomepageCourseApplicationTests  Time elapsed: 0.274 s  <<< ERROR!
+java.lang.IllegalStateException: Found multiple @SpringBootConfiguration annotated classes [Generic bean: class [com.tuyrk.HomepageCourseApplication]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/Users/tuyuankun/Develop/356-springcloud/homepage-service/homepage-course/target/classes/com/tuyrk/HomepageCourseApplication.class], Generic bean: class [com.tuyrk.HomepageCommonApplication]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in URL [jar:file:/Users/tuyuankun/Develop/356-springcloud/homepage-service/homepage-common/target/homepage-common-0.0.1-SNAPSHOT.jar!/com/tuyrk/HomepageCommonApplication.class]]
+

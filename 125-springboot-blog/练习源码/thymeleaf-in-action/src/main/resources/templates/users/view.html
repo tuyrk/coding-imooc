@@ -1,0 +1,29 @@
+<!--
+    @Author : TYK tuyk涂元坤
+    @Mail : 766564616@qq.com
+    @Create : 2019/8/19 17:45 星期一
+    @Update : 2019/8/19 17:45 by tuyk涂元坤
+-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf in action</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<h3 th:text="${userModel.title}">thymeleaf</h3>
+<div>
+    <p><strong>ID：</strong><span th:text="${userModel.user.id}"></span></p>
+    <p><strong>NAME：</strong><span th:text="${userModel.user.name}"></span></p>
+    <p><strong>EMAIL：</strong><span th:text="${userModel.user.email}"></span></p>
+</div>
+<div>
+    <a th:href="@{'/users/delete/'+${userModel.user.id}}">删除</a>
+    <a th:href="@{'/users/modify/'+${userModel.user.id}}">修改</a>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!--
+    @Author : TYK tuyk涂元坤
+    @Mail : 766564616@qq.com
+    @Create : 2019/8/19 17:44 星期一
+    @Update : 2019/8/19 17:44 by tuyk涂元坤
+-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<!-- Page content -->
+<div class="container blog-content-container">
+    <h3 th:text="${userModel.title}">thymeleaf</h3>
+    <form action="/users" th:action="@{/users}" method="post" th:object="${userModel.user}">
+        <input type="hidden" name="id" th:value="*{id}"/>
+        名称：<br>
+        <input type="text" class="form-control" name="name" th:value="*{name}"/>
+        邮箱：<br>
+        <input type="text" class="form-control" name="email" th:value="*{email}"/>
+        <input type="submit" class="btn btn-primary" value="提交"/>
+    </form>
+</div><!-- /.container -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration status="INFO" schema="Log4J-V2.0.xsd" monitorInterval="600">
+    <Properties>
+        <Property name="LOG_HOME">logs</Property>
+        <Property name="FILE_NAME">kafka-log-collect</Property>
+        <Property name="patternLayout">[%d{yyyy-MM-dd'T'HH:mm:ss.SSSZZ}] [%level{length=5}] [%thread-%tid] [%logger] [%X{hostName}] [%X{ip}] [%X{applicationName}] [%F, %L, %C, %M] [%m] ## '%ex'%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${patternLayout}"/>
+        </Console>
+        <!--全量日志-->
+        <RollingRandomAccessFile name="appAppender" fileName="${LOG_HOME}/app-${FILE_NAME}.log" filePattern="${LOG_HOME}/app-${FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="500M"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <!--错误日志,warn级别以上-->
+        <RollingRandomAccessFile name="errorAppender" fileName="${LOG_HOME}/error-${FILE_NAME}.log" filePattern="${LOG_HOME}/error-${FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="500M"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <!--业务相关 异步logger-->
+        <AsyncLogger name="com.tuyrk.*" level="info" includeLocation="true">
+            <AppenderRef ref="appAppender"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.tuyrk.*" level="info" includeLocation="true">
+            <AppenderRef ref="errorAppender"/>
+        </AsyncLogger>
+        <Root level="info">
+            <Appender-ref ref="CONSOLE"/>
+            <Appender-ref ref="appAppender"/>
+            <Appender-ref ref="errorAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

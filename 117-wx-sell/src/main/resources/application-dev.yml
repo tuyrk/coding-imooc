@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.2:3366/coding_117_wx_sell?serverTimezone=GMT%2b8&characterEncoding=utf8&useSSL=false
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
+  redis:
+    host: 127.0.0.2
+    port: 6379
+    password:
+server:
+  servlet:
+    context-path: /sell
+  port: 8080
+
+logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: src/main/resources
+#  file: src/main/resources/sell.log
+  level:
+#    com.tuyrk.sell: debug
+    com.tuyrk.sell.dataobject.mapper: trace # 查看MyBatis的SQL语句
+
+wechat:
+  mpAppId: wxe6a4566e548b4772
+  mpAppSecret: 9c75c3368067822fa8fe76c28875aff3
+  openAppId: 123
+  openAppSecret: 123
+  payMpAppId: wx744a5f3859265b34
+  payMchId: 1264712401
+  payMchKey: zhizhanlianmeng2tshanghairuiruan
+  payKeyPath: 30f603652cb84d9f736190180bf8f58c
+  payNotifyUrl: http://tyk.nat300.top/sell/pay/notify
+  templateId:
+    orderStatus: 8C7fzoKYap778H015J8zPAtkvMPRNkKn088RNgGeb2k
+
+project-url:
+  wechatMpAuthorize: http://tyk.nat300.top
+  wechatOpenAuthorize: http://tyk.nat300.top
+  sell: http://tyk.nat300.top
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

@@ -1,0 +1,45 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    ## app-服务名称.log，为什么写死？防止发生轮转抓取历史数据
+    - /Users/tuyuankun/Develop/1297-kafka/logs/app-kafka-log-collect.log
+  # 定义写入ES时的_type值
+  document_type: "app-log"
+  multiline:
+    # pattern: '^\s*(\d{4}|\d{2})\-(\d{2}|[a-zA-Z]{3})\-(\d{2}|\d{4})' # 指定匹配的表达式（配置）
+    pattern: '^\['      # 指定配置的表达式（匹配以"{开头的字符串）
+    nagate: true        # 是否匹配到
+    match: after        # 合并到上一行的末尾
+    max_lines: 2000     # 最大的行数
+    timeout: 2s         # 如果在规定时间没有新的日志事件就不等待后面的日志，把已收集到的就推送到其他地方
+  fields:
+    logbiz: kafka-log-collect   # 应用名称
+    logtopic: app-kafka-log-collect # 按服务划分用作kafka topic
+    evn: dev
+
+- input_type: log
+  paths:
+    - /Users/tuyuankun/Develop/1297-kafka/logs/error-kafka-log-collect.log
+  document_type: "error-log"
+  multiline:
+    # pattern: '^\s*(\d{4}|\d{2})\-(\d{2}|[a-zA-Z]{3})\-(\d{2}|\d{4})' # 指定匹配的表达式（配置）
+    pattern: '^\['      # 指定配置的表达式（匹配以"{开头的字符串）
+    nagate: true        # 是否匹配到
+    match: after        # 合并到上一行的末尾
+    max_lines: 2000     # 最大的行数
+    timeout: 2s         # 如果在规定时间没有新的日志事件就不等待后面的日志，把已收集到的就推送到其他地方
+  fields:
+    logbiz: kafka-log-collect   # 应用名称
+    logtopic: error-kafka-log-collect # 按服务划分用作kafka topic
+    evn: dev
+
+output.kafka:
+  enabled: true
+  hosts: ["localhost:9092"]
+  topic: '%{[fields.logtopic]}' #
+  partition.hash:
+    reachable_only: true
+  compression: gzip
+  max_message_bytes: 1000000
+  required_acks: 1
+logging.to_files: true

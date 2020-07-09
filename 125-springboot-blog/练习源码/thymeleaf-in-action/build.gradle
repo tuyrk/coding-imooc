@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'java'
+}
+
+// 使用插件
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.tuyrk.blog'
+version = '1.0.0'
+// 指定编译 .java 文件的 JDK 版本
+sourceCompatibility = '1.8'
+
+// 默认使用了 Maven 的中央仓库。这里改用自定义的镜像库
+repositories {
+    // mavenCentral()
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+}
+
+// 依赖关系
+dependencies {
+    // 该依赖对于编译发行是必须的
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 添加 Thymeleaf 的依赖
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 该依赖对于编译测试是必须的，默认包含编译产品依赖和编译时依
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // 添加 lombok 的依赖
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
