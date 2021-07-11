@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://activiti.org/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process_time_date" name="每月发工资" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_0jgz3i0</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="Activity_0dw4ltm" name="发工资" activiti:assignee="bajie">
+      <bpmn2:incoming>Flow_0e8ds6f</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1j49awu</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0e8ds6f" sourceRef="Event_01rdgjr" targetRef="Activity_0dw4ltm" />
+    <bpmn2:endEvent id="Event_19fpx8u">
+      <bpmn2:incoming>Flow_1j49awu</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1j49awu" sourceRef="Activity_0dw4ltm" targetRef="Event_19fpx8u" />
+    <bpmn2:startEvent id="Event_01rdgjr">
+      <bpmn2:outgoing>Flow_0e8ds6f</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_19hoobg" />
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_0jgz3i0" sourceRef="StartEvent_1" targetRef="Event_083woci" />
+    <bpmn2:intermediateCatchEvent id="Event_083woci">
+      <bpmn2:incoming>Flow_0jgz3i0</bpmn2:incoming>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_0omg2ps">
+        <bpmn2:timeDate xsi:type="bpmn2:tFormalExpression">2021-06-27T17:05:00</bpmn2:timeDate>
+      </bpmn2:timerEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_time_date">
+      <bpmndi:BPMNEdge id="Flow_0e8ds6f_di" bpmnElement="Flow_0e8ds6f">
+        <di:waypoint x="538" y="258" />
+        <di:waypoint x="600" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j49awu_di" bpmnElement="Flow_1j49awu">
+        <di:waypoint x="700" y="258" />
+        <di:waypoint x="762" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jgz3i0_di" bpmnElement="Flow_0jgz3i0">
+        <di:waypoint x="448" y="258" />
+        <di:waypoint x="502" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="412" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dw4ltm_di" bpmnElement="Activity_0dw4ltm">
+        <dc:Bounds x="600" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19fpx8u_di" bpmnElement="Event_19fpx8u">
+        <dc:Bounds x="762" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_10fcmr5_di" bpmnElement="Event_01rdgjr">
+        <dc:Bounds x="502" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1wex2oo_di" bpmnElement="Event_083woci">
+        <dc:Bounds x="502" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

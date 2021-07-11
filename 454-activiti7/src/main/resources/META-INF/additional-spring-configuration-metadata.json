@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "activiti7.test",
+      "type": "java.lang.Boolean",
+      "description": "是否测试场景."
+    },
+    {
+      "name": "activiti7.bpmn-path-mapping",
+      "type": "java.lang.String",
+      "description": "BPMN路径映射地址."
+    }
+  ]
+}

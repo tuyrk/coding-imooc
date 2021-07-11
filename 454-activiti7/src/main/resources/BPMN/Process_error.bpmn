@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://activiti.org/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process_error" name="错误边界事件" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_1qv8z10</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_1qv8z10" sourceRef="StartEvent_1" targetRef="Activity_16z5kxr" />
+    <bpmn2:userTask id="Activity_1cg9wu2" name="正常任务" activiti:assignee="bajie">
+      <bpmn2:incoming>Flow_06xlal4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_03s4hlx</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_06xlal4" sourceRef="Activity_16z5kxr" targetRef="Activity_1cg9wu2" />
+    <bpmn2:endEvent id="Event_0aka5mu">
+      <bpmn2:incoming>Flow_03s4hlx</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_03s4hlx" sourceRef="Activity_1cg9wu2" targetRef="Event_0aka5mu" />
+    <bpmn2:userTask id="Activity_01zu3op" name="错误任务" activiti:assignee="bajie">
+      <bpmn2:incoming>Flow_1fmxn9m</bpmn2:incoming>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1fmxn9m" sourceRef="Event_0wd23k7" targetRef="Activity_01zu3op" />
+    <bpmn2:serviceTask id="Activity_16z5kxr" name="服务任务" activiti:class="com.tuyrk.activiti7.listener.ErrServiceTaskListener">
+      <bpmn2:incoming>Flow_1qv8z10</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_06xlal4</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:boundaryEvent id="Event_0wd23k7" attachedToRef="Activity_16z5kxr">
+      <bpmn2:outgoing>Flow_1fmxn9m</bpmn2:outgoing>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_0y0st8r" errorRef="Error_0g2itwl" />
+    </bpmn2:boundaryEvent>
+  </bpmn2:process>
+  <bpmn2:error id="Error_0g2itwl" name="Error_13205hq" errorCode="Error_13205hq" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_error">
+      <bpmndi:BPMNEdge id="Flow_1qv8z10_di" bpmnElement="Flow_1qv8z10">
+        <di:waypoint x="448" y="258" />
+        <di:waypoint x="500" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06xlal4_di" bpmnElement="Flow_06xlal4">
+        <di:waypoint x="600" y="258" />
+        <di:waypoint x="660" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03s4hlx_di" bpmnElement="Flow_03s4hlx">
+        <di:waypoint x="760" y="258" />
+        <di:waypoint x="822" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fmxn9m_di" bpmnElement="Flow_1fmxn9m">
+        <di:waypoint x="550" y="316" />
+        <di:waypoint x="550" y="380" />
+        <di:waypoint x="620" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="412" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cg9wu2_di" bpmnElement="Activity_1cg9wu2">
+        <dc:Bounds x="660" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0aka5mu_di" bpmnElement="Event_0aka5mu">
+        <dc:Bounds x="822" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01zu3op_di" bpmnElement="Activity_01zu3op">
+        <dc:Bounds x="620" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yed7nr_di" bpmnElement="Activity_16z5kxr">
+        <dc:Bounds x="500" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11rb8zs_di" bpmnElement="Event_0wd23k7">
+        <dc:Bounds x="532" y="280" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

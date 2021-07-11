@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://activiti.org/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process_multi_instance_parallel" name="多实例并行子流程" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:extensionElements>
+        <activiti:executionListener class="com.tuyrk.activiti7.listener.MultiInstancesStartListener" event="start" />
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>Flow_1exrho0</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_1exrho0" sourceRef="StartEvent_1" targetRef="Activity_1lgamo6" />
+    <bpmn2:subProcess id="Activity_1lgamo6">
+      <bpmn2:incoming>Flow_1exrho0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1w1ufxg</bpmn2:outgoing>
+      <bpmn2:multiInstanceLoopCharacteristics activiti:collection="assigneeList" activiti:elementVariable="assignee">
+        <bpmn2:loopCardinality xsi:type="bpmn2:tFormalExpression">3</bpmn2:loopCardinality>
+      </bpmn2:multiInstanceLoopCharacteristics>
+      <bpmn2:startEvent id="Event_05jalhi">
+        <bpmn2:outgoing>Flow_0osmsy9</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:userTask id="Activity_0148q5p" name="领取样品" activiti:assignee="${assignee}">
+        <bpmn2:incoming>Flow_0osmsy9</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1k6ugqs</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:sequenceFlow id="Flow_0osmsy9" sourceRef="Event_05jalhi" targetRef="Activity_0148q5p" />
+      <bpmn2:userTask id="Activity_0itwsdi" name="样品分析" activiti:assignee="${assignee}">
+        <bpmn2:extensionElements>
+          <activiti:taskListener class="com.tuyrk.activiti7.listener.MultiInstancesTKListener" event="create" />
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1k6ugqs</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_009222q</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:sequenceFlow id="Flow_1k6ugqs" sourceRef="Activity_0148q5p" targetRef="Activity_0itwsdi" />
+      <bpmn2:endEvent id="Event_06h35w1">
+        <bpmn2:incoming>Flow_009222q</bpmn2:incoming>
+      </bpmn2:endEvent>
+      <bpmn2:sequenceFlow id="Flow_009222q" sourceRef="Activity_0itwsdi" targetRef="Event_06h35w1" />
+    </bpmn2:subProcess>
+    <bpmn2:endEvent id="Event_0uki8rx">
+      <bpmn2:incoming>Flow_1w1ufxg</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1w1ufxg" sourceRef="Activity_1lgamo6" targetRef="Event_0uki8rx" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_multi_instance_parallel">
+      <bpmndi:BPMNEdge id="Flow_1exrho0_di" bpmnElement="Flow_1exrho0">
+        <di:waypoint x="238" y="275" />
+        <di:waypoint x="290" y="275" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w1ufxg_di" bpmnElement="Flow_1w1ufxg">
+        <di:waypoint x="860" y="275" />
+        <di:waypoint x="912" y="275" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="202" y="257" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0uki8rx_di" bpmnElement="Event_0uki8rx">
+        <dc:Bounds x="912" y="257" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kl8puy_di" bpmnElement="Activity_1lgamo6" isExpanded="true">
+        <dc:Bounds x="290" y="170" width="570" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0osmsy9_di" bpmnElement="Flow_0osmsy9">
+        <di:waypoint x="348" y="270" />
+        <di:waypoint x="400" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k6ugqs_di" bpmnElement="Flow_1k6ugqs">
+        <di:waypoint x="500" y="270" />
+        <di:waypoint x="560" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_009222q_di" bpmnElement="Flow_009222q">
+        <di:waypoint x="660" y="270" />
+        <di:waypoint x="722" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_05jalhi_di" bpmnElement="Event_05jalhi">
+        <dc:Bounds x="312" y="252" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0148q5p_di" bpmnElement="Activity_0148q5p">
+        <dc:Bounds x="400" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0itwsdi_di" bpmnElement="Activity_0itwsdi">
+        <dc:Bounds x="560" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06h35w1_di" bpmnElement="Event_06h35w1">
+        <dc:Bounds x="722" y="252" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

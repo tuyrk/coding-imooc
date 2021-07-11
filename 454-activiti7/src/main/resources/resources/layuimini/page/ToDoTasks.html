@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <span class="layui-card-header"><i class="layui-icon layui-icon-form"></i>&nbsp;待办任务列表</span>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="ToDoTasksTableId" lay-filter="currentTableFilter"></table>
+        <!--分页-->
+        <div class="layui-table-page layui-border-box">
+            <div id="barcon" class="page_div" name="barcon"></div>
+        </div>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-handle" lay-event="handle">办理</a>
+        </script>
+
+    </div>
+</div>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../js/ManualPaging.js"></script>
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        var insTb = table.render({
+            elem: '#ToDoTasksTableId',
+            toolbar: '#toolbarDemo',
+            defaultToolbar: [''],
+            url: '' + publicurl + 'task/getTasks',
+            parseData: function (result) { //result 即为原始返回的数据
+                //处理时间
+                for (var i = 0; i < result.data.length; i++) {
+                    for (k in result.data[i]) {
+                        result.data[i]["createdDate"] = renderTime(result.data[i].createdDate);
+                        result.data[i]['status'] = judgeState(result.data[i].status)
+                    }
+                }
+                return {
+                    "code": result.code, //解析接口状态,默认成功是0
+                    "msg": result.msg, //解析提示文本
+                    "count": result.data.length, //解析数据长度
+                    "data": result.data //解析数据列表
+                };
+            },
+            cols: [[
+                {type: "checkbox", width: '5%', align: "center"},
+                {field: 'id', width: '13%', title: 'ID', align: "center"},
+                {field: 'instanceName', width: '22%', title: '流程名称', align: "center"},
+                {field: 'name', width: '15%', title: '任务节点名称', align: "center"},
+                {field: 'status', width: '12%', title: '任务状态', align: "center"},
+                {field: 'assignee', width: '8%', title: '办理人', align: "center"},
+                {field: 'createdDate', title: '创建时间', width: '15%', align: "center"},
+                {title: '操作', width: '10%', toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 10,
+            page: false,
+            skin: 'line',
+            // id:'ToDoTasksTableId',
+            done: function (result, curr, count) {
+                if (result.code === 1) {
+                    layer.alert(result.msg + '<br>' + result.data, {
+                        icon: 2,
+                        title: "提示"
+                    });
+                }
+
+                if (count > 0) {
+                    goPage(1);
+                }
+            }
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('tool(currentTableFilter)', function (obj) {
+            if (obj.event === 'handle') {  // 监听办理操作
+                // console.log(obj);
+                creatFormTable(obj);
+            }
+        });
+
+        function renderTime(date) {
+            var dateee = new Date(date).toJSON();
+            return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+        }
+
+        function judgeState(state) {
+            var stateText = '';
+            if (state === 'ASSIGNED') {
+                stateText = '执行中';
+            } else {
+                stateText = state
+            }
+            return stateText
+        }
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        //动态生成表单
+        function creatFormTable(obj) {
+            var loadIndex = layer.load(2);
+            $.get('' + publicurl + 'task/formDataShow', {
+                taskId: obj.data ? obj.data.id : '',
+            }, function (result) {
+                layer.close(loadIndex);
+                if (result.data !== '无表单' && result.code === 0) {
+                    var index = layer.open({
+                        title: '办理任务',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: '../page/table/FormDataShow.html',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child(JSON.stringify(result.data), obj.data.id)
+                            localStorage.setItem("ID", obj.data.id);
+                        },
+                        end: function () {
+                            insTb.reload();
+                        }
+                    });
+                    $(window).on("resize", function () {
+                        layer.full(index);
+                    });
+                } else if (result.code === 1) {
+                    parent.layer.msg(result.data, {
+                        icon: 0,
+                        time: 2000
+                    });
+                } else {
+                    doHandle(obj);
+                }
+            }, 'json');
+
+        }
+
+        /* 挂起流程定义 */
+        function doHandle(obj) {
+            console.log(obj, "单条数据");
+            layer.confirm('确定要办理该任务吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+                $.post('' + publicurl + 'task/completeTask', {
+                    taskId: obj.data ? obj.data.id : '',
+                }, function (result) {
+                    layer.close(loadIndex);
+                    if (result.code === 0) {
+                        layer.msg(result.msg, {icon: 1});
+                        insTb.reload();
+                    } else {
+                        layer.alert(result.msg + '<br>' + result.data, {icon: 2});
+                    }
+                }, 'json');
+            });
+        }
+
+    });
+</script>
+
+</body>
+</html>

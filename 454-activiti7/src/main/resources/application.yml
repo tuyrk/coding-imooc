@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      timeout: 9000
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/454-activiti7?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  activiti:
+    db-history-used: true # Activiti7历史表创建
+    history-level: full
+    check-process-definitions: false # 自动部署验证设置:true-开启（默认）、false-关闭
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+# 日志的相关配置
+logging:
+  level:
+    root: info
+activiti7:
+  test: false
+  bpmn-path-mapping: file:/Users/tuyuankun/Desktop/activiti7_workflow/src/main/resources/resources/bpmn/
